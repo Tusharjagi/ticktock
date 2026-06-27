@@ -1,5 +1,4 @@
-import { apiFetch } from "./client";
-import type {
+import {
   EntryInput,
   Paginated,
   Project,
@@ -7,7 +6,8 @@ import type {
   TimesheetStatus,
   WeeklyTimesheet,
   WorkType,
-} from "../types";
+} from "@/lib/types";
+import { apiFetch } from "./client";
 
 export interface TimesheetFilters {
   status?: TimesheetStatus | "all";
@@ -21,13 +21,16 @@ export function fetchTimesheets(
   filters: TimesheetFilters = {},
 ): Promise<Paginated<WeeklyTimesheet>> {
   const params = new URLSearchParams();
-  if (filters.status && filters.status !== "all") params.set("status", filters.status);
+  if (filters.status && filters.status !== "all")
+    params.set("status", filters.status);
   if (filters.from) params.set("from", filters.from);
   if (filters.to) params.set("to", filters.to);
   if (filters.page) params.set("page", String(filters.page));
   if (filters.perPage) params.set("perPage", String(filters.perPage));
   const qs = params.toString();
-  return apiFetch<Paginated<WeeklyTimesheet>>(`/api/timesheets${qs ? `?${qs}` : ""}`);
+  return apiFetch<Paginated<WeeklyTimesheet>>(
+    `/api/timesheets${qs ? `?${qs}` : ""}`,
+  );
 }
 
 export interface WeekDetail {
