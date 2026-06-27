@@ -8,9 +8,9 @@ import { ProgressBar } from "@/components/list/ProgressBar";
 import { AddEntryModal } from "@/components/entry/AddEntryModal";
 import { Spinner } from "@/components/ui/Spinner";
 import { deleteEntry, fetchWeekDetail } from "@/services/api/timesheets";
-import { enumerateDays } from "@/lib/date";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 import type { TimesheetEntry } from "@/lib/types";
+import { enumerateDays } from "@/utils/DatesFormatter";
 
 interface ModalState {
   open: boolean;

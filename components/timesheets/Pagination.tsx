@@ -1,14 +1,13 @@
 "use client";
 
 import { memo } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/utils/cn";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 
 interface PaginationProps {
   page: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  /** Disable all buttons while a fetch is in-flight to prevent double-clicks. */
   isPending?: boolean;
 }
 
@@ -42,7 +41,10 @@ export const Pagination = memo(function Pagination({
         type="button"
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1 || isPending}
-        className={cn(btn, "border-line text-body hover:bg-gray-50 disabled:opacity-40")}
+        className={cn(
+          btn,
+          "border-line text-body hover:bg-gray-50 disabled:opacity-40",
+        )}
       >
         {TEXT.pagination.previous}
       </button>
@@ -76,7 +78,10 @@ export const Pagination = memo(function Pagination({
         type="button"
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages || isPending}
-        className={cn(btn, "border-line text-body hover:bg-gray-50 disabled:opacity-40")}
+        className={cn(
+          btn,
+          "border-line text-body hover:bg-gray-50 disabled:opacity-40",
+        )}
       >
         {TEXT.pagination.next}
       </button>

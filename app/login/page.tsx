@@ -2,12 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/lib/auth-context";
 import { ApiError } from "@/services/api/client";
 import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Input } from "@/components/ui/Input";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
+import { useAuth } from "@/context/auth/useAuth";
 
 export default function LoginPage() {
   const { login, isAuthenticated, loading } = useAuth();

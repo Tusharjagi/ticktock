@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { StatusBadge } from "@/components/ui/Badge";
 import { actionForStatus } from "@/lib/status";
-import { cn } from "@/lib/cn";
+import { cn } from "@/utils/cn";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 import type { WeeklyTimesheet } from "@/lib/types";
 
@@ -31,7 +31,9 @@ function HeaderCell({
     >
       <span className="inline-flex items-center gap-1">
         {children}
-        {sortable && <ArrowDown className="h-3.5 w-3.5 text-faint" aria-hidden />}
+        {sortable && (
+          <ArrowDown className="h-3.5 w-3.5 text-faint" aria-hidden />
+        )}
       </span>
     </th>
   );
@@ -65,7 +67,10 @@ export const TimesheetTable = memo(function TimesheetTable({
             <SkeletonRows />
           ) : weeks.length === 0 ? (
             <tr>
-              <td colSpan={4} className="px-6 py-12 text-center text-sm text-muted">
+              <td
+                colSpan={4}
+                className="px-6 py-12 text-center text-sm text-muted"
+              >
                 {TEXT.table.empty}
               </td>
             </tr>

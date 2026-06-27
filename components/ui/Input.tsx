@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/utils/cn";
 
 const baseField =
   "w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-faint shadow-sm transition-colors focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand disabled:bg-gray-50";
@@ -11,7 +11,11 @@ export const Input = forwardRef<
   return (
     <input
       ref={ref}
-      className={cn(baseField, invalid && "border-bad-fg focus:ring-bad-fg", className)}
+      className={cn(
+        baseField,
+        invalid && "border-bad-fg focus:ring-bad-fg",
+        className,
+      )}
       {...props}
     />
   );
@@ -24,7 +28,12 @@ export const Textarea = forwardRef<
   return (
     <textarea
       ref={ref}
-      className={cn(baseField, "resize-none", invalid && "border-bad-fg focus:ring-bad-fg", className)}
+      className={cn(
+        baseField,
+        "resize-none",
+        invalid && "border-bad-fg focus:ring-bad-fg",
+        className,
+      )}
       {...props}
     />
   );

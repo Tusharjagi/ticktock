@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { useAuth } from "@/lib/auth-context";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
+import { useAuth } from "@/context/auth/useAuth";
 
 /** Top navigation bar: logo + Timesheets link, and the user menu on the right. */
 export function Navbar() {
@@ -17,7 +17,8 @@ export function Navbar() {
   useEffect(() => {
     if (!open) return;
     const onDocClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
@@ -53,7 +54,9 @@ export function Navbar() {
             aria-expanded={open}
             className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-body transition-colors hover:bg-gray-50"
           >
-            <span className="font-medium">{user?.name ?? TEXT.nav.accountFallback}</span>
+            <span className="font-medium">
+              {user?.name ?? TEXT.nav.accountFallback}
+            </span>
             <ChevronDown className="h-4 w-4 text-muted" />
           </button>
           {open && (

@@ -1,3 +1,5 @@
+import { User } from "@/services/api/types";
+
 export const WEEKLY_TARGET_HOURS = 40;
 
 export type TimesheetStatus = "completed" | "incomplete" | "missing";
@@ -48,4 +50,12 @@ export interface EntryInput {
   workTypeId: string;
   description: string;
   hours: number;
+}
+
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
 }

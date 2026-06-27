@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/utils/cn";
 import { Spinner } from "./Spinner";
 
 type Variant = "primary" | "secondary" | "ghost";
@@ -46,7 +46,9 @@ export function Button({
       disabled={disabled || loading}
       {...props}
     >
-      {loading && <Spinner className="h-4 w-4 border-white/40 border-t-white" />}
+      {loading && (
+        <Spinner className="h-4 w-4 border-white/40 border-t-white" />
+      )}
       {children}
     </button>
   );

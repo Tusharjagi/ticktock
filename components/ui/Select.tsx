@@ -1,9 +1,8 @@
 import { forwardRef } from "react";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/utils/cn";
 
-interface SelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   invalid?: boolean;
   /** Greys the control like a placeholder when no value is selected. */
   placeholderSelected?: boolean;

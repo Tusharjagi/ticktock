@@ -1,8 +1,8 @@
 "use client";
 
+import { AuthProvider } from "@/context/auth/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
-import { AuthProvider } from "@/lib/auth-context";
 
 /**
  * Client-side providers shared across the whole app:

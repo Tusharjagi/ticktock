@@ -1,6 +1,6 @@
 import { apiError, json, requireAuth } from "@/lib/server-helpers";
-import { PROJECTS, WORK_TYPES } from "@/lib/mock/projects";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
+import { PROJECTS, WORK_TYPES } from "@/lib/mock/constants";
 
 /** GET /api/projects — dropdown options for the Add/Edit entry modal. */
 export async function GET(request: Request) {

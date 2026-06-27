@@ -2,6 +2,7 @@ import { User } from "@/services/api/types";
 import { EntryInput } from "./types";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 import { MOCK_USERS } from "./mock/constants";
+import { ISO_DATE_REGEX } from "@/utils/RegExp";
 
 export function json(data: unknown, status = 200): Response {
   return Response.json(data, { status });
@@ -53,7 +54,7 @@ export function validateEntryInput(body: unknown): ValidationResult {
   const b = body as Record<string, unknown>;
 
   const date = b.date;
-  if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+  if (typeof date !== "string" || !ISO_DATE_REGEX.test(date)) {
     return { ok: false, error: TEXT.api.dateRequired };
   }
   if (typeof b.projectId !== "string" || b.projectId.length === 0) {

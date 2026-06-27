@@ -2,9 +2,9 @@
 
 import { Plus } from "lucide-react";
 import { TaskCard } from "./TaskCard";
-import { formatDayLabel } from "@/lib/date";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 import type { TimesheetEntry } from "@/lib/types";
+import { formatDayLabel } from "@/utils/DatesFormatter";
 
 interface DayGroupProps {
   date: string; // ISO

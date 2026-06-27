@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/utils/cn";
 import { STATUS_META } from "@/lib/status";
 import type { TimesheetStatus } from "@/lib/types";
 
