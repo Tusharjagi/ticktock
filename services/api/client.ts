@@ -1,5 +1,5 @@
-import type { User } from "../types";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
+import { User } from "./types";
 
 const TOKEN_KEY = "ticktock.token";
 const USER_KEY = "ticktock.user";
