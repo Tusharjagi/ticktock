@@ -1,12 +1,5 @@
 export const WEEKLY_TARGET_HOURS = 40;
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  initials: string;
-}
-
 export type TimesheetStatus = "completed" | "incomplete" | "missing";
 
 export interface Project {
@@ -55,9 +48,4 @@ export interface EntryInput {
   workTypeId: string;
   description: string;
   hours: number;
-}
-
-export interface AuthResponse {
-  token: string;
-  user: User;
 }

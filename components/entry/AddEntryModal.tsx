@@ -8,8 +8,12 @@ import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Input";
 import { Stepper } from "@/components/ui/Stepper";
 import { Button } from "@/components/ui/Button";
-import { createEntry, fetchProjects, updateEntry } from "@/lib/api/timesheets";
-import { ApiError } from "@/lib/api/client";
+import {
+  createEntry,
+  fetchProjects,
+  updateEntry,
+} from "@/services/api/timesheets";
+import { ApiError } from "@/services/api/client";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 import type { EntryInput, TimesheetEntry } from "@/lib/types";
 
@@ -132,7 +136,9 @@ function EntryForm({
           id="project"
           value={form.projectId}
           placeholderSelected={!form.projectId}
-          onChange={(e) => setForm((f) => ({ ...f, projectId: e.target.value }))}
+          onChange={(e) =>
+            setForm((f) => ({ ...f, projectId: e.target.value }))
+          }
         >
           <option value="" disabled>
             {TEXT.modal.projectPlaceholder}
@@ -150,7 +156,9 @@ function EntryForm({
           id="work-type"
           value={form.workTypeId}
           placeholderSelected={!form.workTypeId}
-          onChange={(e) => setForm((f) => ({ ...f, workTypeId: e.target.value }))}
+          onChange={(e) =>
+            setForm((f) => ({ ...f, workTypeId: e.target.value }))
+          }
         >
           <option value="" disabled>
             {TEXT.modal.workTypePlaceholder}
@@ -174,7 +182,9 @@ function EntryForm({
           rows={4}
           placeholder={TEXT.modal.descriptionPlaceholder}
           value={form.description}
-          onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
+          onChange={(e) =>
+            setForm((f) => ({ ...f, description: e.target.value }))
+          }
         />
       </Field>
 

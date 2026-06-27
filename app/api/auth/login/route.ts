@@ -1,7 +1,7 @@
 import { apiError, delay, json, makeToken } from "@/lib/server-helpers";
 import { findUserByCredentials } from "@/lib/mock/users";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
-import type { AuthResponse } from "@/lib/types";
+import { AuthResponse } from "@/services/api/types";
 
 /** POST /api/auth/login — validate credentials, return a mock token + user. */
 export async function POST(request: Request) {
@@ -25,7 +25,6 @@ export async function POST(request: Request) {
 
   const user = findUserByCredentials(email, password);
   if (!user) {
-    // Generic message — don't reveal which field was wrong.
     return apiError(TEXT.api.invalidCredentials, 401);
   }
 

@@ -16,14 +16,12 @@ export const TEXT = {
     closeAria: "Close",
   },
 
-  /** Action-column labels in the timesheets table, keyed by status. */
   actions: {
     view: "View",
     update: "Update",
     create: "Create",
   },
 
-  /** Status badge labels, keyed by status. */
   status: {
     completed: "COMPLETED",
     incomplete: "INCOMPLETE",
@@ -49,8 +47,8 @@ export const TEXT = {
     rememberMe: "Remember me",
     submit: "Sign in",
     demoLabel: "Demo login —",
-    demoEmail: "john@ticktock.dev",
-    demoPassword: "password123",
+    demoEmail: "tushar@dev",
+    demoPassword: "tushar1234",
     genericError: "Something went wrong. Please try again.",
     brandDescription:
       "Introducing ticktock, our cutting-edge timesheet web application designed to revolutionize how you manage employee work hours. With ticktock, you can effortlessly track and monitor employee attendance and productivity from anywhere, anytime, using any internet-connected device.",

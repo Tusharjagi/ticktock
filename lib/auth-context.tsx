@@ -7,25 +7,23 @@ import {
   useMemo,
   useSyncExternalStore,
 } from "react";
-import type { User } from "./types";
-import { login as loginRequest } from "./api/auth";
+import type { User } from "../services/api/types";
+import { login as loginRequest } from "../services/api/auth";
 import {
   clearSession,
   getStoredUser,
   getToken,
   storeSession,
-} from "./api/client";
+} from "../services/api/client";
 
 interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
-  /** True until the session has been read from storage on the client. */
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
-// Module-level subscription so login/logout re-render every consumer.
 const sessionListeners = new Set<() => void>();
 
 function notifySessionChange(): void {
@@ -39,8 +37,6 @@ function subscribeSession(listener: () => void): () => void {
   };
 }
 
-// Cache the snapshot so it stays referentially stable between renders
-// (useSyncExternalStore requires getSnapshot to return a stable value).
 let cachedKey: string | null = null;
 let cachedUser: User | null = null;
 
@@ -58,9 +54,11 @@ function getUserSnapshot(): User | null {
 const AuthContext = createContext<AuthState | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  // Server + first client render see `null` / not-hydrated, matching the SSR
-  // HTML; React then re-reads the real values after hydration — no mismatch.
-  const user = useSyncExternalStore(subscribeSession, getUserSnapshot, () => null);
+  const user = useSyncExternalStore(
+    subscribeSession,
+    getUserSnapshot,
+    () => null,
+  );
   const hydrated = useSyncExternalStore(
     subscribeSession,
     () => true,

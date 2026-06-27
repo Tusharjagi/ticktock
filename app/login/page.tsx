@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth-context";
-import { ApiError } from "@/lib/api/client";
+import { ApiError } from "@/services/api/client";
 import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Input } from "@/components/ui/Input";
@@ -43,7 +43,9 @@ export default function LoginPage() {
       {/* Left — form */}
       <div className="flex items-center justify-center px-6 py-12 sm:px-10">
         <form onSubmit={handleSubmit} className="w-full max-w-sm" noValidate>
-          <h1 className="mb-8 text-2xl font-bold text-ink">{TEXT.login.heading}</h1>
+          <h1 className="mb-8 text-2xl font-bold text-ink">
+            {TEXT.login.heading}
+          </h1>
 
           <div className="flex flex-col gap-5">
             <Field label={TEXT.login.emailLabel} htmlFor="email">
@@ -81,7 +83,10 @@ export default function LoginPage() {
             </label>
 
             {error && (
-              <p className="rounded-md bg-bad-bg px-3 py-2 text-sm text-bad-fg" role="alert">
+              <p
+                className="rounded-md bg-bad-bg px-3 py-2 text-sm text-bad-fg"
+                role="alert"
+              >
                 {error}
               </p>
             )}

@@ -1,6 +1,7 @@
-import { EntryInput, User } from "./types";
-import { MOCK_USERS } from "./mock/users";
+import { User } from "@/services/api/types";
+import { EntryInput } from "./types";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
+import { MOCK_USERS } from "./mock/constants";
 
 export function json(data: unknown, status = 200): Response {
   return Response.json(data, { status });

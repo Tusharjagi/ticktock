@@ -1,5 +1,5 @@
 import { apiFetch } from "./client";
-import type { AuthResponse, User } from "../types";
+import type { AuthResponse, User } from "./types";
 
 /** POST /api/auth/login */
 export function login(email: string, password: string): Promise<AuthResponse> {

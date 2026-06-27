@@ -10,7 +10,7 @@ import {
 import { Pagination } from "@/components/timesheets/Pagination";
 import { TimesheetTable } from "@/components/timesheets/TimesheetTable";
 import { Select } from "@/components/ui/Select";
-import { fetchTimesheets } from "@/lib/api/timesheets";
+import { fetchTimesheets } from "@/services/api/timesheets";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 
 const PER_PAGE_OPTIONS = [5, 10, 20];

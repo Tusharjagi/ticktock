@@ -1,35 +1,20 @@
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+import { addDays, MONTHS } from "@/utils/DatesFormatter";
 
 export function formatDayLabel(iso: string): string {
   const [, m, d] = iso.split("-").map(Number);
   return `${MONTHS[m - 1]} ${Number(d)}`;
 }
 
-export function addDaysIso(iso: string, days: number): string {
-  const d = new Date(`${iso}T00:00:00Z`);
-  d.setUTCDate(d.getUTCDate() + days);
-  return d.toISOString().slice(0, 10);
-}
+export const enumerateDays = (start: string, end: string): string[] => {
+  const dates: string[] = [];
 
-export function enumerateDays(start: string, end: string): string[] {
-  const days: string[] = [];
-  let cur = start;
-  for (let i = 0; cur <= end && i < 366; i++) {
-    days.push(cur);
-    cur = addDaysIso(cur, 1);
+  const current = new Date(`${start}T00:00:00Z`);
+  const last = new Date(`${end}T00:00:00Z`);
+
+  while (current <= last) {
+    dates.push(current.toISOString().split("T")[0]);
+    current.setUTCDate(current.getUTCDate() + 1);
   }
-  return days;
-}
+
+  return dates;
+};
