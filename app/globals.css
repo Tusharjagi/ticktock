@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ * The brand blue is centralised here as `--color-brand` — change this single
+ * value to retheme every button, link and the login panel at once.
+ */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Brand */
+  --color-brand: #1a56db;
+  --color-brand-hover: #1648bf;
+  --color-brand-soft: #eef2ff;
+
+  /* Neutrals */
+  --color-ink: #111827; /* headings */
+  --color-body: #374151; /* default text */
+  --color-muted: #6b7280; /* secondary text */
+  --color-faint: #9ca3af; /* placeholders, hints */
+  --color-line: #e5e7eb; /* borders */
+  --color-canvas: #f7f8fa; /* app background */
+
+  /* Status — completed */
+  --color-ok-bg: #e6f6ed;
+  --color-ok-fg: #1f8a4c;
+  /* Status — incomplete */
+  --color-warn-bg: #fdf4d3;
+  --color-warn-fg: #946a00;
+  /* Status — missing */
+  --color-bad-bg: #fce8ec;
+  --color-bad-fg: #c0334e;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Thin, consistent focus ring for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
