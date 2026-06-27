@@ -40,8 +40,6 @@ export default function TimesheetsPage() {
   const weeks = data?.data ?? [];
   const totalPages = data?.totalPages ?? 1;
 
-  // Wrap every user-driven state update in a transition so React keeps the UI
-  // interactive while the new fetch is in-flight.
   const handleRange = useCallback(
     (id: string) => {
       startTransition(() => {
@@ -49,7 +47,6 @@ export default function TimesheetsPage() {
         setPage(1);
       });
     },
-    // startTransition and setState setters are stable — [] is correct.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
@@ -75,8 +72,6 @@ export default function TimesheetsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // isFetching covers in-flight refetches; isPending covers the transition
-  // window before React Query even fires the request.
   const isUpdating = isPending || isFetching;
 
   return (

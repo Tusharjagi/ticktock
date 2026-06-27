@@ -6,7 +6,6 @@ interface ProgressBarProps {
   target?: number;
 }
 
-/** "20/40 hrs" weekly progress indicator with an orange fill. */
 export function ProgressBar({
   total,
   target = WEEKLY_TARGET_HOURS,

@@ -21,17 +21,10 @@ interface AddEntryModalProps {
   open: boolean;
   onClose: () => void;
   weekId: string;
-  /** Day the entry is being added/edited for (ISO date). */
   date: string;
-  /** When provided, the modal is in "edit" mode. */
   entry?: TimesheetEntry | null;
 }
 
-/**
- * The form is a separate component rendered as the Modal's child. Because the
- * Modal unmounts its children when closed, the form's state initialises fresh
- * from props on every open — no reset effect needed.
- */
 export function AddEntryModal({
   open,
   onClose,

@@ -4,14 +4,6 @@ import { AuthProvider } from "@/context/auth/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 
-/**
- * Client-side providers shared across the whole app:
- *  - React Query for server-state (data fetching/caching/mutations)
- *  - AuthProvider for the mock session
- *
- * The QueryClient is created inside state so it's stable across re-renders
- * but never shared between requests on the server.
- */
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
     () =>

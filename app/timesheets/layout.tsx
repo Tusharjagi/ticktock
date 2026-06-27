@@ -2,7 +2,6 @@ import { RequireAuth } from "@/components/layout/RequireAuth";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
-/** Chrome shared by every authenticated timesheet page. */
 export default function TimesheetsLayout({
   children,
 }: {

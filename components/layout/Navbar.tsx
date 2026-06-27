@@ -7,7 +7,6 @@ import { ChevronDown } from "lucide-react";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 import { useAuth } from "@/context/auth/useAuth";
 
-/** Top navigation bar: logo + Timesheets link, and the user menu on the right. */
 export function Navbar() {
   const { user, logout } = useAuth();
   const router = useRouter();

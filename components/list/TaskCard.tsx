@@ -11,7 +11,6 @@ interface TaskCardProps {
   onDelete: (entry: TimesheetEntry) => void;
 }
 
-/** A single logged task row within a day. */
 export function TaskCard({ entry, onEdit, onDelete }: TaskCardProps) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-line bg-white px-4 py-3">

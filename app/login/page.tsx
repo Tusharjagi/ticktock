@@ -19,7 +19,6 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // If already signed in, skip the login screen.
   useEffect(() => {
     if (!loading && isAuthenticated) router.replace("/timesheets");
   }, [loading, isAuthenticated, router]);
@@ -40,7 +39,6 @@ export default function LoginPage() {
 
   return (
     <div className="grid min-h-screen bg-white lg:grid-cols-2">
-      {/* Left — form */}
       <div className="flex items-center justify-center px-6 py-12 sm:px-10">
         <form onSubmit={handleSubmit} className="w-full max-w-sm" noValidate>
           <h1 className="mb-8 text-2xl font-bold text-ink">
@@ -104,7 +102,6 @@ export default function LoginPage() {
         </form>
       </div>
 
-      {/* Right — brand panel */}
       <div className="hidden flex-col justify-center bg-brand px-12 py-12 lg:flex">
         <h2 className="mb-5 text-4xl font-bold text-white">{TEXT.app.name}</h2>
         <p className="max-w-md text-base leading-relaxed text-white/85">

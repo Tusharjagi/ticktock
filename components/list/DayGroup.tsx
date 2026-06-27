@@ -7,14 +7,13 @@ import type { TimesheetEntry } from "@/lib/types";
 import { formatDayLabel } from "@/utils/DatesFormatter";
 
 interface DayGroupProps {
-  date: string; // ISO
+  date: string;
   entries: TimesheetEntry[];
   onAddTask: (date: string) => void;
   onEdit: (entry: TimesheetEntry) => void;
   onDelete: (entry: TimesheetEntry) => void;
 }
 
-/** One day's row: date label on the left, its tasks + "Add new task" on the right. */
 export function DayGroup({
   date,
   entries,
