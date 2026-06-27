@@ -6,7 +6,7 @@ Tailwind CSS, with a self-contained mock API layer.
 
 > **Live demo:** _add your Vercel URL here after deploying_
 >
-> **Demo login:** `john@ticktock.dev` / `password123`
+> **Demo login:** `tushar@dev` / `tushar1234`
 
 ---
 
@@ -34,16 +34,19 @@ npm run dev
 # open http://localhost:3000  →  redirects to /login
 
 # 3. Sign in with the demo credentials
-#    email:    john@ticktock.dev
-#    password: password123
+#    email:    tushar@dev
+#    password: tushar1234
 ```
 
 **Other scripts**
 
 ```bash
-npm run build   # production build
-npm run start   # serve the production build
-npm run lint    # eslint
+npm run build          # production build
+npm run start          # serve the production build
+npm run lint           # eslint
+npm test               # run the Jest test suite
+npm run test:watch     # tests in watch mode
+npm run test:coverage  # tests with a coverage report
 ```
 
 No environment variables are required — the app is fully self-contained.
@@ -60,6 +63,7 @@ No environment variables are required — the app is fully self-contained.
 | Data fetching | **TanStack Query (React Query)** | Caching, loading/error states, mutation invalidation |
 | Icons | **lucide-react** | Lightweight, consistent icon set |
 | Font | **Inter** via `next/font/google` | Per the design spec |
+| Testing | **Jest + React Testing Library** | Unit tests for components, utils, status logic and the API client |
 
 ---
 
@@ -69,7 +73,7 @@ The assessment asks for **local API endpoints** with **no direct mock-data impor
 in components**. That separation is enforced strictly:
 
 ```
-lib/mock/*          →   app/api/*           →   lib/api/*          →   components / pages
+lib/mock/*          →   app/api/*           →   services/api/*     →   components / pages
 (seed data, store)      (Route Handlers)        (typed fetchers)       (only ever see typed data)
 ```
 
@@ -78,9 +82,18 @@ lib/mock/*          →   app/api/*           →   lib/api/*          →   com
 - **`app/api/`** — Route Handlers. They own auth, validation, filtering,
   pagination and status derivation, and add a small simulated latency so loading
   states are real.
-- **`lib/api/`** — typed client fetchers. Components call these; every request
-  carries the bearer token and parses errors into a typed `ApiError`.
+- **`services/api/`** — typed client fetchers (`client.ts` wraps `fetch`,
+  `auth.ts` / `timesheets.ts` expose the calls). Components call these; every
+  request carries the bearer token and parses errors into a typed `ApiError`.
+- **`context/auth/`** — the client-side session. `AuthProvider` exposes the
+  current user through `useSyncExternalStore` over a small subscribe/snapshot
+  store; `useAuth()` is the consumer hook. The token + user live in
+  `localStorage`.
 - **components / pages** — consume only the typed domain models in `lib/types.ts`.
+
+Cross-cutting helpers live outside the data path: **`utils/`** (date formatting,
+the `cn` class joiner, shared regexes) and **`constants/TEXT_CONSTANTS.ts`**
+(centralised UI copy via the `TEXT` object).
 
 ### API endpoints
 
@@ -126,17 +139,48 @@ app/
     page.tsx                                  # Table View
     [weekId]/page.tsx                         # List View
   api/…                                       # Route Handlers (the mock API)
+services/api/
+  client.ts                                   # fetch wrapper, ApiError, session storage
+  auth.ts · timesheets.ts · types.ts          # typed client fetchers
+context/auth/
+  AuthProvider.tsx · AuthContext.ts           # mock session (localStorage)
+  authStore.ts · useAuth.ts · types.ts        # subscribe/snapshot store + hook
 lib/
-  types.ts · status.ts · date.ts · cn.ts
-  auth-context.tsx                            # mock session (localStorage)
-  api/                                        # client fetchers + base client
+  types.ts                                    # shared domain models
+  status.ts                                   # weekly status derivation
+  server-helpers.ts                           # route-handler helpers (token, validation)
   mock/                                       # seed data + in-memory store
+utils/
+  DatesFormatter.ts · cn.ts · RegExp.ts       # pure helpers
+constants/
+  TEXT_CONSTANTS.ts                           # centralised UI copy (`TEXT`)
 components/
   ui/        Button Input Select Badge Modal DropdownMenu Stepper Spinner Field
   layout/    Navbar Footer RequireAuth
   timesheets/  TimesheetTable Filters Pagination
   list/        DayGroup TaskCard ProgressBar
   entry/       AddEntryModal
+__tests__/   Jest + React Testing Library suites mirroring the tree above
+```
+
+---
+
+## Testing
+
+Unit tests run on **Jest** with **React Testing Library** (jsdom). The suite in
+`__tests__/` mirrors the source tree:
+
+- **components** — `ui/` (Badge, Button, DropdownMenu, Spinner) and the
+  `timesheets/` + `list/` views (Filters, Pagination, TaskCard, ProgressBar)
+- **context/auth** — the session store and the `useAuth` hook
+- **services/api** — the `client` fetch wrapper and `ApiError` handling
+- **lib** — `status` derivation (the 40h / <40h / 0h rule)
+- **utils** — date formatting and the `cn` helper
+
+```bash
+npm test               # run once
+npm run test:watch     # watch mode
+npm run test:coverage  # coverage report
 ```
 
 ---
@@ -168,4 +212,3 @@ components/
 
 Approximately **5–6 hours** (design study, scaffolding, API layer, the four
 screens, visual QA against the Figma, and this README).
-# ticktock
