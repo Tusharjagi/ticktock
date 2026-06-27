@@ -4,17 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { MoreHorizontal } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
+import { MenuItem } from "./types";
 
-export interface MenuItem {
-  label: string;
-  onSelect: () => void;
-  danger?: boolean;
-}
-
-/**
- * "..." overflow menu used on each task card. Opens on click, closes on
- * outside click or Escape, and right-aligns under the trigger.
- */
 export function DropdownMenu({ items }: { items: MenuItem[] }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

@@ -26,7 +26,11 @@ export function TaskCard({ entry, onEdit, onDelete }: TaskCardProps) {
         <DropdownMenu
           items={[
             { label: TEXT.task.edit, onSelect: () => onEdit(entry) },
-            { label: TEXT.task.delete, onSelect: () => onDelete(entry), danger: true },
+            {
+              label: TEXT.task.delete,
+              onSelect: () => onDelete(entry),
+              danger: true,
+            },
           ]}
         />
       </div>

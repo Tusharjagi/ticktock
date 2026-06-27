@@ -10,11 +10,9 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: React.ReactNode;
-  /** Optional footer area (e.g. action buttons), pinned below the body. */
   footer?: React.ReactNode;
 }
 
-/** Accessible centered modal: closes on backdrop click + Escape, locks scroll. */
 export function Modal({ open, onClose, title, children, footer }: ModalProps) {
   useEffect(() => {
     if (!open) return;
@@ -29,7 +27,6 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
     };
   }, [open, onClose]);
 
-  // Closed on the server and on first paint → no portal, no hydration mismatch.
   if (!open || typeof document === "undefined") return null;
 
   return createPortal(

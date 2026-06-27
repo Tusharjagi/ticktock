@@ -1,7 +1,6 @@
 import { cn } from "@/utils/cn";
 import { TEXT } from "@/constants/TEXT_CONSTANTS";
 
-/** Simple accessible loading spinner. */
 export function Spinner({ className }: { className?: string }) {
   return (
     <span

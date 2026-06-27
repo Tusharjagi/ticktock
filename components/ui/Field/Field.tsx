@@ -1,19 +1,7 @@
 import { Info } from "lucide-react";
 import { cn } from "@/utils/cn";
+import { FieldProps } from "./types";
 
-interface FieldProps {
-  label: string;
-  htmlFor?: string;
-  required?: boolean;
-  /** Renders a small info icon next to the label (matches the modal design). */
-  info?: boolean;
-  hint?: string;
-  error?: string;
-  className?: string;
-  children: React.ReactNode;
-}
-
-/** Label + control wrapper with optional required marker, hint and error. */
 export function Field({
   label,
   htmlFor,

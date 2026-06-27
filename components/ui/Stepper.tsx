@@ -11,7 +11,6 @@ interface StepperProps {
   step?: number;
 }
 
-/** Numeric stepper: − [value] + (used for "Hours" in the entry modal). */
 export function Stepper({
   value,
   onChange,

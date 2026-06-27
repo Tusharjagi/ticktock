@@ -4,11 +4,9 @@ import { cn } from "@/utils/cn";
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   invalid?: boolean;
-  /** Greys the control like a placeholder when no value is selected. */
   placeholderSelected?: boolean;
 }
 
-/** Native select styled to match the design, with a custom chevron. */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select(
     { className, invalid, placeholderSelected, children, ...props },
